@@ -61,27 +61,34 @@ function depositClick() {
         if (user === introName) {
             for (j = 0; j < holders[i].accounts.length; j++) {
                 if (holders[i].accounts[j].accountNumber === introAccount) {
-                    holders[i].accounts[j].depositMoney(amount);
-                    console.log(holders[i].accounts[j].balance);
+                    
+                    
+                    if (amount <= 0) {
+                        document.getElementById("answer01").setAttribute("class", "dnone");
+                        document.getElementById("answer02").setAttribute("class", "dnone");
+                        document.getElementById("answer03").setAttribute("class", "dnone");
+                        document.getElementById("answer04").innerText = "You have to deposit at least 1,00 € !"
+                    } else {
+                        holders[i].accounts[j].depositMoney(amount);
+                        document.getElementById("answer01").setAttribute("class", "dnone");
+                        document.getElementById("answer02").setAttribute("class", "dnone");
+                        document.getElementById("answer03").setAttribute("class", "dnone");
 
-                    document.getElementById("answer01").setAttribute("class", "dnone");
-                    document.getElementById("answer02").setAttribute("class", "dnone");
-                    document.getElementById("answer03").setAttribute("class", "dnone");
-
-                    document.getElementById("showMovements").removeAttribute("class");
-                    document.getElementById("answerShowMovements").innerHTML +=
-                        "<span>" +
-                        user +
-                        "</span>" +
-                        "<span>" +
-                        holders[i].accounts[j].accountNumber +
-                        "</span>" +
-                        "<span>" +
-                        holders[i].accounts[j].balance + " €" +
-                        "</span>" + 
-                        "<span>" +
-                        holders[i].accounts[j].transactions +
-                        "</span>";
+                        document.getElementById("showMovements").removeAttribute("class");
+                        document.getElementById("answerShowMovements").innerHTML +=
+                            "<span>" +
+                            user +
+                            "</span>" +
+                            "<span>" +
+                            holders[i].accounts[j].accountNumber +
+                            "</span>" +
+                            "<span>" +
+                            holders[i].accounts[j].balance + " €" +
+                            "</span>" +
+                            "<span>" +
+                            holders[i].accounts[j].transactions +
+                            "</span>";          
+                    }
                 }
             }
         }
@@ -102,28 +109,33 @@ function takeOutClick() {
         if (user === introName) {
             for (j = 0; j < holders[i].accounts.length; j++) {
                 if (holders[i].accounts[j].accountNumber === introAccount) {
-                    holders[i].accounts[j].takeOutMoney(amount);
-                    console.log(holders[i].accounts[j].balance);
 
-                    document.getElementById("answer01").setAttribute("class", "dnone");
-                    document.getElementById("answer02").setAttribute("class", "dnone");
-                    document.getElementById("answer03").setAttribute("class", "dnone");
+                    if (amount > holders[i].accounts[j].balance) {
+                        document.getElementById("answer01").setAttribute("class", "dnone");
+                        document.getElementById("answer02").setAttribute("class", "dnone");
+                        document.getElementById("answer03").setAttribute("class", "dnone");
+                        document.getElementById("answer04").innerText = "You don't have enough money in the account."
+                    } else {
+                        holders[i].accounts[j].takeOutMoney(amount); //call method
+                        document.getElementById("answer01").setAttribute("class", "dnone");
+                        document.getElementById("answer02").setAttribute("class", "dnone");
+                        document.getElementById("answer03").setAttribute("class", "dnone");
 
-                    document.getElementById("showMovements").removeAttribute("class");
-                    document.getElementById("answerShowMovements").innerHTML +=
-                        "<span>" +
-                        user +
-                        "</span>" +
-                        "<span>" +
-                        holders[i].accounts[j].accountNumber +
-                        "</span>" +
-                        "<span>" +
-                        holders[i].accounts[j].balance + " €" +
-                        "</span>" + 
-                        "<span>" +
-                        holders[i].accounts[j].transactions +
-                        "</span>";
-
+                        document.getElementById("showMovements").removeAttribute("class");
+                        document.getElementById("answerShowMovements").innerHTML +=
+                            "<span>" +
+                            user +
+                            "</span>" +
+                            "<span>" +
+                            holders[i].accounts[j].accountNumber +
+                            "</span>" +
+                            "<span>" +
+                            holders[i].accounts[j].balance + " €" +
+                            "</span>" +
+                            "<span>" +
+                            holders[i].accounts[j].transactions +
+                            "</span>";          
+                    }
                 }
             }
         }

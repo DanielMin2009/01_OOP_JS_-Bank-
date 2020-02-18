@@ -24,24 +24,32 @@ class Account {
         return this._transactions;
     }
 
-    depositMoney(money) {
-        if (money > 0) {
-            this._balance += money;
+    /*
+    depositMoney(amount) {
+        if (amount > 0) {
+            this._balance += amount;
             this._transactions++;
-        } else {
-            document.getElementById("answer01").innerText = "You have to deposit at least 1,00 € !"
-            return false;
         }
     }
+    */
 
-    takeOutMoney(money) {
-        if (money <= this._balance) {
-            this._balance -= money;
+    depositMoney(amount) {
+        this._balance += amount;
+        this._transactions++;
+    }
+
+    /*
+    takeOutMoney(amount) {
+        if (amount < this._balance) {
+            this._balance -= amount;
             this._transactions++;
-        } else {
-            document.getElementById("answer01").innerText = "You don't have enough money in the account."
-            return false;
         }
+    }
+    */
+
+    takeOutMoney(amount) {
+        this._balance -= amount;
+        this._transactions++;
     }
 }
 
