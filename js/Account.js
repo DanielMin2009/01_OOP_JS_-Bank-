@@ -24,28 +24,12 @@ class Account {
         return this._transactions;
     }
 
-    /*
-    depositMoney(amount) {
-        if (amount > 0) {
-            this._balance += amount;
-            this._transactions++;
-        }
-    }
-    */
 
     depositMoney(amount) {
         this._balance += amount;
         this._transactions++;
     }
 
-    /*
-    takeOutMoney(amount) {
-        if (amount < this._balance) {
-            this._balance -= amount;
-            this._transactions++;
-        }
-    }
-    */
 
     takeOutMoney(amount) {
         this._balance -= amount;
